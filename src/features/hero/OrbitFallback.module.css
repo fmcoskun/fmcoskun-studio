@@ -1,0 +1,71 @@
+.fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transition: opacity 900ms var(--ease-out);
+}
+
+.fallback[data-hidden='true'] {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 900ms var(--ease-out),
+    visibility 0s linear 900ms;
+}
+
+.fallback svg {
+  width: min(100%, 720px);
+  height: 100%;
+  overflow: visible;
+}
+
+.stars circle {
+  fill: #e6e6ea;
+  opacity: 0.55;
+}
+
+.globe {
+  stroke: var(--color-accent);
+  stroke-opacity: 0.16;
+  stroke-width: 1;
+}
+
+.core {
+  stroke: var(--color-accent);
+  stroke-opacity: 0.6;
+  stroke-width: 1.2;
+}
+
+.coreInner {
+  stroke: var(--color-accent);
+  stroke-opacity: 0.22;
+}
+
+.ring {
+  stroke: var(--color-accent);
+  stroke-width: 1.2;
+  transform-origin: 300px 300px;
+}
+
+.node {
+  fill: var(--color-accent);
+  stroke: none;
+  filter: drop-shadow(0 0 6px rgb(var(--accent-rgb) / 0.7));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ring {
+    animation: precess linear infinite;
+  }
+
+  .ring:nth-of-type(even) {
+    animation-direction: reverse;
+  }
+}
+
+@keyframes precess {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,52 @@
+.svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.line {
+  fill: none;
+  stroke: var(--olive-700);
+}
+
+.body {
+  fill: var(--charcoal-800);
+  stroke: var(--olive-700);
+}
+
+.node {
+  fill: rgb(var(--accent-rgb));
+  stroke: var(--olive-700);
+  stroke-width: 1.2;
+}
+
+.glow {
+  fill: none;
+  stroke: rgb(var(--accent-rgb));
+}
+
+.alert {
+  fill: var(--color-alert);
+}
+
+.alertRing {
+  fill: none;
+  stroke: var(--color-alert);
+  opacity: 0.5;
+}
+
+.paper {
+  fill: var(--mist-100);
+}
+
+.shadow {
+  fill: var(--ink-950);
+  opacity: 0.1;
+}
+
+.label {
+  fill: var(--ink-600);
+  font-family: var(--font-mono);
+  font-size: 8px;
+}

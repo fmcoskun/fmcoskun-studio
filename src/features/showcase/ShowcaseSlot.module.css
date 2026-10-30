@@ -1,0 +1,13 @@
+.slot {
+  position: relative;
+}
+
+.fallback {
+  position: absolute;
+  inset: 0;
+  transition: opacity 600ms var(--ease-out);
+}
+
+.slot[data-ready='true'] .fallback {
+  opacity: 0;
+}

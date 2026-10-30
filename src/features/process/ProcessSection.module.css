@@ -1,0 +1,91 @@
+
+/* ---------- Mobile: vertical timeline ---------- */
+.track {
+  position: relative;
+  display: grid;
+  gap: var(--space-6);
+  padding-left: var(--space-7);
+}
+
+.track::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: linear-gradient(var(--color-accent-text), var(--color-border) 40%, var(--color-border));
+}
+
+.step {
+  position: relative;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.node {
+  position: absolute;
+  left: calc(-1 * var(--space-7) + 4px);
+  top: 4px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid var(--color-accent-text);
+  background: var(--color-bg);
+}
+
+.node::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: var(--color-accent-text);
+  opacity: 0.35;
+}
+
+.step:first-child .node::after {
+  opacity: 1;
+  box-shadow: 0 0 10px var(--color-accent-glow);
+}
+
+.index {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-accent-text);
+}
+
+.title {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.description {
+  color: var(--color-text-muted);
+  max-width: 34ch;
+}
+
+/* ---------- Desktop: horizontal orbit line ---------- */
+@media (min-width: 900px) {
+  .track {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-5);
+    padding-left: 0;
+    padding-top: var(--space-7);
+  }
+
+  .track::before {
+    left: 0;
+    right: 0;
+    top: 7px;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+    background: linear-gradient(90deg, var(--color-accent-text), var(--color-border) 35%, var(--color-border) 85%, transparent);
+  }
+
+  .node {
+    left: 0;
+    top: calc(-1 * var(--space-7));
+  }
+}

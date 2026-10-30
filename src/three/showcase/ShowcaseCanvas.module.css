@@ -1,0 +1,8 @@
+/* One transparent canvas over the viewport; Views scissor each scene into its
+   DOM slot. Below the header and menu, never a pointer target. */
+.layer {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-header) - 1);
+  pointer-events: none;
+}

@@ -1,0 +1,56 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 12px;
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  border: 2px solid var(--charcoal-950);
+  border-radius: 6px;
+  box-shadow:
+    0 0 0 1px rgb(var(--accent-rgb) / 0.5),
+    0 0 18px -2px var(--color-accent-glow);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  perspective: 400px;
+}
+
+.char {
+  display: inline-block;
+  transform-style: preserve-3d;
+  backface-visibility: visible;
+  transition: transform 720ms var(--ease-in-out);
+  transition-delay: calc(var(--i) * 45ms);
+}
+
+/* Desktop: hover / keyboard focus spins every glyph 360° on Y with a stagger. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .logo:hover .char,
+  .logo:focus-visible .char {
+    transform: rotateY(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .logo:focus-visible .char {
+    transform: rotateY(360deg);
+  }
+
+  /* Touch: one-shot spin triggered on tap (see Logo.tsx). */
+  .logo[data-spin='true'] .char {
+    animation: spin 720ms var(--ease-in-out) both;
+    animation-delay: calc(var(--i) * 45ms);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}

@@ -1,0 +1,12 @@
+node_modules
+dist
+.env
+.env.local
+.env.*.local
+*.log
+.DS_Store
+
+# Local tooling / AI working files (kept locally, not published)
+.superpowers/
+CLAUDE.md
+docs/superpowers/

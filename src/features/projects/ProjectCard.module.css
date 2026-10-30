@@ -1,0 +1,127 @@
+.card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition:
+    border-color var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+.card:has(.trigger:focus-visible) {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  .card:hover {
+    border-color: var(--color-border-strong);
+    transform: translateY(-3px);
+  }
+
+  .card:hover .open {
+    color: var(--color-accent);
+  }
+
+  .card:hover .open svg {
+    transform: translate(2px, -2px);
+  }
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 16 / 8;
+  /* Background comes from the global .stage-mist utility. */
+  border-bottom: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slot {
+  position: absolute;
+  inset: 0;
+}
+
+.index {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-600); /* sits on the light mist stage */
+  z-index: 1;
+}
+
+.body {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  padding: var(--space-5);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.title {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: var(--leading-snug);
+}
+
+/* Stretched button: the whole card is the hit area, the title stays the accessible name. */
+.trigger {
+  all: unset;
+  cursor: pointer;
+}
+
+.trigger::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.summary {
+  color: var(--color-text-muted);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding-top: var(--space-2);
+}
+
+.open {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.open svg {
+  transition: transform var(--dur-base) var(--ease-out);
+}

@@ -1,0 +1,11 @@
+.wrapper {
+  position: absolute;
+  inset: 0;
+  /* Decorative layer: never intercepts clicks on overlapping hero text/buttons,
+     and R3F's raycaster never runs because no pointer events reach the canvas. */
+  pointer-events: none;
+}
+
+.wrapper canvas {
+  touch-action: pan-y;
+}

@@ -1,0 +1,137 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  z-index: 1; /* sits above the light band tucked underneath */
+  background:
+    radial-gradient(60% 55% at 72% 46%, rgb(var(--accent-rgb) / 0.06), transparent 70%),
+    var(--color-bg-hero);
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+}
+
+.inner {
+  position: relative;
+  display: grid;
+  padding-block: clamp(var(--space-6), 6vw, var(--space-8)) 0;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: var(--space-5);
+  align-content: center;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.eyebrow b {
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+.title {
+  font-size: var(--text-display);
+  line-height: var(--leading-tight);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.title .accent {
+  color: var(--color-accent);
+  /* Soft halo only behind the accent words — the rest stays dark. */
+  text-shadow: 0 0 32px rgb(var(--accent-rgb) / 0.25);
+}
+
+.lead {
+  max-width: 46ch;
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding-top: var(--space-2);
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  padding-top: var(--space-5);
+  margin-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.facts li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.facts li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid var(--color-accent);
+}
+
+.visual {
+  position: relative;
+  z-index: 1;
+  height: clamp(300px, 86vw, 460px);
+  margin-top: calc(-1 * var(--space-4));
+}
+
+/* ---------- Small mobile: keep headline + CTAs in the first viewport ---------- */
+@media (max-width: 480px) {
+  .actions > * {
+    flex: 1 1 100%;
+  }
+
+  .facts {
+    display: none;
+  }
+}
+
+/* ---------- Desktop: text left (~46%), scene fills the right and slightly overlaps ---------- */
+@media (min-width: 900px) {
+  .inner {
+    min-height: clamp(620px, calc(100svh - var(--header-h)), 900px);
+    padding-block: var(--space-8);
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    align-items: center;
+  }
+
+  .content {
+    max-width: 700px;
+  }
+
+  .visual {
+    position: absolute;
+    inset: 0 calc(-1 * var(--gutter)) 0 40%;
+    height: auto;
+    margin: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .visual {
+    left: 44%;
+  }
+}

@@ -1,0 +1,59 @@
+.section {
+  padding-bottom: var(--space-section);
+}
+
+.panel {
+  display: grid;
+  gap: var(--space-7);
+  padding: clamp(var(--space-5), 5vw, var(--space-8));
+  /* Background: global .stage-mist (light grey + grid), tokens from .theme-light. */
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+}
+
+.intro {
+  position: relative;
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.title {
+  font-size: var(--text-h2);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.lead {
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+  max-width: 36ch;
+}
+
+.stage {
+  width: min(100%, 200px);
+  aspect-ratio: 1;
+  margin-top: var(--space-4);
+}
+
+@media (min-width: 900px) {
+  .panel {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: var(--space-8);
+  }
+
+  .stage {
+    width: 280px;
+    margin-top: var(--space-6);
+  }
+}

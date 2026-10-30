@@ -1,0 +1,206 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + var(--space-4));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* overflow-x on body alone does not stop iOS from scrolling sideways */
+#root {
+  overflow-x: clip;
+}
+
+body[data-scroll-locked='true'] {
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure,
+dl,
+dd {
+  margin: 0;
+}
+
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+  padding: 0;
+}
+
+img,
+svg,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.container {
+  width: min(100% - 2 * var(--gutter), var(--container));
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--space-section);
+}
+
+/* ---------- Theme scopes ----------
+   .theme-light flips semantic tokens for a band of the page (reference: light
+   band under the dark hero). .theme-dark restores them for dark islands inside
+   a light band, e.g. the service cards. */
+.theme-light {
+  --color-bg: var(--light-bg);
+  --color-text: var(--light-text);
+  --color-text-muted: var(--light-muted);
+  --color-border: var(--light-border);
+  --color-border-strong: var(--light-border-strong);
+  --color-accent-text: var(--olive-700);
+  --color-focus: var(--ink-950);
+  --mark-bg: rgb(var(--accent-rgb));
+  --mark-color: var(--ink-950);
+  --color-danger: var(--red-800);
+  --color-warning: var(--amber-800);
+  --color-field: var(--mist-100);
+  color: var(--color-text);
+  background:
+    radial-gradient(40% 55% at 82% 30%, rgb(255 255 255 / 0.55), transparent 70%),
+    radial-gradient(45% 60% at 70% 45%, var(--mist-300), transparent 75%),
+    var(--light-bg);
+}
+
+.theme-dark {
+  --color-bg: var(--charcoal-900);
+  --color-text: #f4f4f5;
+  --color-text-muted: #9d9da5;
+  --color-border: var(--charcoal-700);
+  --color-border-strong: var(--charcoal-600);
+  --color-accent-text: rgb(var(--accent-rgb));
+  --color-focus: rgb(var(--accent-rgb));
+  color: var(--color-text);
+}
+
+/* Light grey stage with a 32px grid — backdrop for the showcase 3D scenes
+   (project card media, contact panel). The canvas above it is transparent. */
+.stage-mist {
+  background:
+    linear-gradient(var(--mist-400) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(90deg, var(--mist-400) 1px, transparent 1px) 0 0 / 32px 32px,
+    radial-gradient(120% 90% at 50% 35%, var(--mist-100) 0%, var(--mist-200) 60%, var(--mist-300) 100%);
+}
+
+/* Light band tucked under the rounded hero / previous dark block. */
+.band-light {
+  position: relative;
+  border-radius: var(--radius-xl);
+}
+
+.band-light--under-hero {
+  margin-top: calc(-1 * var(--radius-xl));
+  padding-top: calc(var(--space-section) + var(--radius-xl));
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: -100px;
+  z-index: calc(var(--z-header) + 1);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: var(--space-3);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.accent {
+  /* lime on dark, olive inside .theme-light */
+  color: var(--color-accent-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

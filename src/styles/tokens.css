@@ -1,0 +1,119 @@
+/* Single source of truth for brand tokens. JS reads the scene palette from
+   src/three/config/sceneConfig.ts, which mirrors these values.
+
+   Palette: neutral charcoal + lime (sampled from the reference design).
+   To re-theme, change the primitives in the first block; everything else derives. */
+:root {
+  /* ---- Primitives ---- */
+  --accent-rgb: 193 247 51; /* #C1F733 — space-separated for rgb(var() / a) */
+  --charcoal-950: #141416;
+  --charcoal-900: #19191b;
+  --charcoal-850: #1d1d1f;
+  --charcoal-800: #212123;
+  --charcoal-750: #27272a;
+  --charcoal-700: #303034;
+  --charcoal-600: #404045;
+  --mist-100: #ecebf0;
+  --mist-200: #e4e3e9;
+  --mist-300: #dcdde8; /* lavender wash from the reference */
+  --mist-400: #cdccd6;
+  --mist-500: #b6b5c0;
+  --ink-950: #0d0d0f;
+  --ink-600: #4a4a51;
+  --olive-700: #3c5600; /* accent-family colour that passes AA as text on light */
+  --red-300: #ff8a7a;
+  --red-600: #d93b3b; /* alert that stays legible on the mist stage */
+  --red-800: #9b1c1c; /* danger text on light */
+  --amber-200: #f3e3a8;
+  --amber-800: #6b5300; /* warning text on light */
+
+  /* ---- Semantic (dark scope = default) ---- */
+  --color-bg: var(--charcoal-900);
+  --color-bg-hero: var(--charcoal-850);
+  --color-header-bg: rgb(29 29 31 / 0.86); /* matches hero, no seam */
+  --color-surface: var(--charcoal-800);
+  --color-surface-raised: var(--charcoal-750);
+  --color-alert: var(--red-600);
+  --color-border: var(--charcoal-700);
+  --color-border-strong: var(--charcoal-600);
+  --color-text: #f4f4f5;
+  --color-text-muted: #9d9da5; /* 6.9:1 on --color-bg */
+  --color-accent: rgb(var(--accent-rgb));
+  --color-accent-text: rgb(var(--accent-rgb));
+  --color-accent-glow: rgb(var(--accent-rgb) / 0.35);
+  --color-accent-soft: rgb(var(--accent-rgb) / 0.12);
+  --color-on-accent: #0a0a0a;
+  --color-focus: rgb(var(--accent-rgb));
+  --mark-bg: linear-gradient(transparent 58%, rgb(var(--accent-rgb) / 0.3) 58%, rgb(var(--accent-rgb) / 0.3) 92%, transparent 92%);
+  --mark-color: inherit;
+  --color-danger: var(--red-300);
+  --color-warning: var(--amber-200);
+  --color-field: var(--charcoal-900);
+
+  /* ---- Light scope values (applied via .theme-light) ---- */
+  --light-bg: var(--mist-200);
+  --light-text: var(--ink-950);
+  --light-muted: var(--ink-600); /* 7.4:1 on --light-bg */
+  --light-border: var(--mist-400);
+  --light-border-strong: var(--mist-500);
+
+  /* Type */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: clamp(1.0625rem, 0.98rem + 0.35vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-h3: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  --text-h2: clamp(2rem, 1.4rem + 2.6vw, 3.5rem);
+  --text-display: clamp(2.4rem, 1.1rem + 5vw, 5.25rem);
+
+  --leading-tight: 0.98;
+  --leading-snug: 1.2;
+  --leading-body: 1.6;
+  --measure: 62ch;
+
+  /* Space (4px base) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-section: clamp(4.5rem, 3rem + 6vw, 9rem);
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+  --container: 1240px;
+
+  /* Shape */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 36px;
+  --radius-pill: 999px;
+
+  /* Elevation */
+  --shadow-glow: 0 0 0 1px var(--color-accent), 0 0 24px -4px var(--color-accent-glow);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 160ms;
+  --dur-base: 280ms;
+  --dur-slow: 640ms;
+
+  /* Layout */
+  --header-h: 72px;
+  --z-header: 50;
+  --z-menu: 60;
+  --z-dialog: 80;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-h: 64px;
+  }
+}

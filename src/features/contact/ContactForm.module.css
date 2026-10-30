@@ -1,0 +1,164 @@
+.form {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.note {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.row {
+  display: grid;
+  gap: var(--space-5);
+}
+
+@media (min-width: 640px) {
+  .row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.field {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.field label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: var(--space-3) var(--space-4);
+  /* 16px minimum stops iOS Safari from zooming into focused fields. */
+  font-size: max(16px, var(--text-base));
+  background: var(--color-field);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 150px;
+  line-height: var(--leading-body);
+}
+
+.field select {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--color-text-muted) 50%),
+    linear-gradient(135deg, var(--color-text-muted) 50%, transparent 50%);
+  background-position:
+    calc(100% - 20px) 50%,
+    calc(100% - 15px) 50%;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: var(--space-7);
+}
+
+.field select option {
+  background: var(--color-field);
+}
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+  border-color: var(--color-text-muted);
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  outline: none;
+  border-color: var(--color-focus);
+  box-shadow: 0 0 0 3px var(--color-accent-soft);
+}
+
+.field [aria-invalid='true'] {
+  border-color: var(--color-danger);
+}
+
+.error {
+  font-size: var(--text-sm);
+  color: var(--color-danger);
+}
+
+.error::before {
+  content: '! ';
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.messageMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.count {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.footer {
+  display: grid;
+  gap: var(--space-4);
+  justify-items: start;
+}
+
+/* The live region must stay in the DOM (not display:none) so updates are announced. */
+.status:empty {
+  margin-top: calc(-1 * var(--space-4));
+}
+
+.success,
+.warning,
+.failure {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  border: 1px solid;
+}
+
+.success {
+  color: var(--color-accent-text);
+  border-color: rgb(var(--accent-rgb) / 0.4);
+  background: var(--color-accent-soft);
+}
+
+.warning {
+  color: var(--color-warning);
+  border-color: color-mix(in srgb, var(--color-warning) 35%, transparent);
+  background: color-mix(in srgb, var(--color-warning) 6%, transparent);
+}
+
+.warning a {
+  color: inherit;
+  font-weight: 600;
+}
+
+.failure {
+  color: var(--color-danger);
+  border-color: color-mix(in srgb, var(--color-danger) 40%, transparent);
+  background: color-mix(in srgb, var(--color-danger) 6%, transparent);
+}
