@@ -12,7 +12,8 @@ const js = readdirSync(assets).filter((f) => f.endsWith('.js'));
 const read = (f) => readFileSync(join(assets, f), 'utf8');
 const failures = [];
 
-const entry = html.match(/<script[^>]+src="\/assets\/([^"]+\.js)"/)?.[1];
+// Any base path (e.g. /<repo>/ on GitHub Pages) may precede assets/.
+const entry = html.match(/<script[^>]+src="[^"]*?assets\/([^"]+\.js)"/)?.[1];
 if (!entry) failures.push('entry script not found in index.html');
 else if (read(entry).includes('WebGLRenderer')) failures.push(`entry chunk ${entry} contains WebGLRenderer`);
 
