@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { NAV_ITEMS, OBSERVED_SECTIONS } from '../../data/navigation';
 import { useActiveSection } from '../../hooks/useActiveSection';
+import { latestIntersection } from '../../hooks/intersection';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { ButtonLink } from '../ui/Button';
 import { Icon } from '../ui/Icon';
@@ -27,7 +28,7 @@ export function Header() {
   useEffect(() => {
     const sentinel = document.getElementById('top-sentinel');
     if (!sentinel || typeof IntersectionObserver === 'undefined') return;
-    const observer = new IntersectionObserver(([entry]) => setScrolled(!entry?.isIntersecting));
+    const observer = new IntersectionObserver((entries) => setScrolled(!latestIntersection(entries)));
     observer.observe(sentinel);
     return () => observer.disconnect();
   }, []);

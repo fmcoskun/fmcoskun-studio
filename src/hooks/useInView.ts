@@ -1,4 +1,5 @@
 import { useEffect, useState, type RefObject } from 'react';
+import { latestIntersection } from './intersection';
 
 interface Options {
   rootMargin?: string;
@@ -18,10 +19,11 @@ export function useInView(ref: RefObject<Element | null>, { rootMargin = '0px', 
       return;
     }
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry) return;
-        setInView(entry.isIntersecting);
-        if (entry.isIntersecting && once) observer.disconnect();
+      (entries) => {
+        const visible = latestIntersection(entries);
+        if (visible === undefined) return;
+        setInView(visible);
+        if (visible && once) observer.disconnect();
       },
       { rootMargin, threshold },
     );
